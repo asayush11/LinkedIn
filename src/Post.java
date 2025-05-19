@@ -42,15 +42,16 @@ public class Post {
                 .forEach(react -> System.out.println(react.getUser().getName() + " Reacted " + react.getReactType()));
     }
 
-    public Comment addComment(Comment comment, String userID) {
-        comments.put(userID, comment);
+    public Comment addComment(Comment comment) {
+        comments.put(comment.getId(), comment);
         System.out.println(comment.getUser().getName() + " commented " + comment.getContent());
         return comment;
     }
 
-    public void removeComment(String userID) {
-        comments.remove(userID);
-        System.out.println(userID + " removed comment");
+    public void removeComment(String commentID) {
+        User commenter = comments.get(commentID).getUser();
+        comments.remove(commentID);
+        System.out.println(commenter.getName() + " removed comment");
     }
 
     private void displayComments() {
@@ -67,5 +68,12 @@ public class Post {
         System.out.println(this.content);
         displayReactions();
         displayComments();
+    }
+
+    public void addReactOnComment(React react, String userID, Comment comment){
+        comments.get(comment.getId()).addReact(react, userID);
+    }
+    public void removeReactOnComment(String userID, Comment comment){
+        comments.get(comment.getId()).removeReact(userID);
     }
 }

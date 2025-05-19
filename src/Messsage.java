@@ -13,7 +13,7 @@ public class Messsage {
         this.content = content;
     }
 
-    public String  getId() {
+    public String getId() {
         return id;
     }
 

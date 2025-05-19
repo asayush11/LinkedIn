@@ -1,5 +1,6 @@
 package src;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Demo {
@@ -13,41 +14,37 @@ public class Demo {
           User user4 = system.addUser("Joy");
           User user5 = system.addUser("Richard");
           User user6 = system.addUser("Charlie");
+          User user = new User("12212", "dummy");
 
           // add skills
           user1.addSkill("React");
           user1.addSkill("Java");
           user2.addSkill("C++");
           user3.addSkill("SQL");
+          user.addSkill("dummy");
 
           // add experience
-          user1.addExperience(new Experience("IBM", new Date()));
-          user1.addExperience(new Experience("Infosys", new Date(500)));
-          user5.addExperience(new Experience("SAP", new Date()));
-          user5.addExperience(new Experience("Google", new Date(1000)));
-          user6.addExperience(new Experience("HCL", new Date()));
+          user1.addExperience(new Experience("IBM", LocalDate.now().plusYears(2)));
+          user1.addExperience(new Experience("Infosys", LocalDate.now()));
+          user5.addExperience(new Experience("SAP", LocalDate.now().minusMonths(11)));
+          user5.addExperience(new Experience("Google", LocalDate.now()));
+          user6.addExperience(new Experience("HCL", LocalDate.now()));
 
           // add connections
           user1.addConnection(user2);
           user1.addConnection(user3);
           user4.addConnection(user6);
+          user1.addConnection(user);
 
           // display data of users
-          user1.displaySkills();
-          user1.displayExperiences();
-          user1.displayConnections();
-          user2.displaySkills();
-          user2.displayExperiences();
-          user2.displayConnections();
+          user1.displayUser();
+          user2.displayUser();
 
           // add message
           Messsage messsage1 = user1.addMessage(user2, "Hi");
           Messsage messsage2 = user1.addMessage(user2, "Hey");
           Messsage messsage3 = user4.addMessage(user6, "Hello");
-          user2.removeMessage(messsage1.getId());
-          user1.removeMessage(messsage1.getId());
 
-          system.displayMessages();
 
           // add post
           Post post1 = user1.addPost("Hey all");
@@ -60,8 +57,9 @@ public class Demo {
           // add comment
           Comment comment1 = user2.addComment(post1, "Yeahh");
           Comment comment2 = user3.addComment(post2, "Noooo");
-          user1.addReactOnComment(ReactType.HAHA, comment1);
+          user1.addReactOnComment(ReactType.HAHA, comment1, post1);
 
-          user1.displayPosts();
+          user1.displayUser();
+          user.displayUser();
     }
 }
