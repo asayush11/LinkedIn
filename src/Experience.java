@@ -1,13 +1,13 @@
 package src;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Experience {
     private final String org;
-    private final Date startDate;
-    private Date endDate;
+    private final LocalDate startDate;
+    private LocalDate endDate;
 
-    public Experience(String org, Date startDate) {
+    public Experience(String org, LocalDate startDate) {
         this.org = org;
         this.startDate = startDate;
         this.endDate = null;
@@ -17,15 +17,15 @@ public class Experience {
         return org;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 }
